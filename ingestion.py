@@ -36,7 +36,7 @@ docs_splits = text_splitter.split_documents(docs_list)
 #     documents=docs_splits,
 #     collection_name="rag-chroma",
 #     embedding=embeddings,
-#     persist_directory="./.chroma",
+#     persist_directory=".chroma",
 # )
 
 retriever = Chroma(

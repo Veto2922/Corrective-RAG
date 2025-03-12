@@ -1,7 +1,7 @@
 from typing import Any , Dict
-from graph.chains.retrieval_grader import retrieval_grader
+from chains.retrieval_grader import retrieval_grader
 
-from graph.state import GraphState
+from state import GraphState
 
 
 def grade_documents(state: GraphState) -> Dict[str, Any]:
@@ -13,7 +13,7 @@ def grade_documents(state: GraphState) -> Dict[str, Any]:
     web_search = False
     
     for d in documents:
-        score = retrieval_grader.invoke({'documents': documents, 'question': question})
+        score = retrieval_grader.invoke({'document': documents, 'question': question})
 
         grade = score['binary_score']
         

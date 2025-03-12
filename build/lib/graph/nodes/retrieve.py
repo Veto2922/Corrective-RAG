@@ -1,6 +1,12 @@
 from typing import Any , Dict
 
-from graph.state import GraphState
+
+
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
+from state import GraphState
 from ingestion import retriever
 
 

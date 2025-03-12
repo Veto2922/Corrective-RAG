@@ -1,4 +1,5 @@
 from dotenv import load_dotenv
+from pprint import pprint
 
 load_dotenv()
 
@@ -10,6 +11,8 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../.
 from ingestion import retriever 
 
 from graph.chains.retrieval_grader import retrieval_grader , GradeDocuments
+from graph.chains.generation import generation_chain
+
 
 
 def test_tetrival_grader_answer_yes():
@@ -51,3 +54,21 @@ def test_tetrival_grader_answer_no():
     )
     # print( "this is the grade res : " ,res)
     assert res['binary_score'] == "no"
+    
+    
+
+def test_generation_chain():
+    """
+    Test the generation chain
+    """
+    question = "What are the main differences between the prompt engineering techniques discussed in the blog posts?"
+    documents = retriever.invoke(question)
+    # doc_text = documents[1].page_content
+    res = generation_chain.invoke(
+        {
+            "context": documents,
+            "question": question
+        }
+    )
+    pprint(res)
+    
